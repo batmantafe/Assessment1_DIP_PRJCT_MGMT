@@ -24,6 +24,11 @@ public class ShiningLight : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        /*
+         * When the Light is touched by an Enemy, the
+         * Light will turn Black and it will deactivate
+         * the light Component.
+        */
         if (other.gameObject.CompareTag("Enemy"))
         {
             colourRend.material.color = Color.black;
