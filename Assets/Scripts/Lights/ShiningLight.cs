@@ -10,7 +10,7 @@ public class ShiningLight : MonoBehaviour
     private Light shiningLight;
 
     private float timer;
-    private float timerSet = 10f;
+    private float timerSet = 20f;
 
     // timer = timer - (1f * Time.deltaTime);
 
