@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     // This function sets the random Enemy starting position.
     void EnemyStartFunction()
     {
-        enemyStart = Random.Range(1,4);
+        enemyStart = Random.Range(0,4);
         Debug.Log("enemyStart = " + enemyStart);
 
         enemyArray[enemyStart].SetActive(true);
@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     // This function sets the random Exit Door.
     void ExitDoorRedStartFunction()
     {
-        exitDoorRedStart = Random.Range(1,4);
+        exitDoorRedStart = Random.Range(0,4);
         Debug.Log("exitDoorRedStart = " + exitDoorRedStart);
 
         exitDoorRedArray[exitDoorRedStart].SetActive(true);
@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
     // This functions set the random Key.
     void KeyStartFunction()
     {
-        keyStart = Random.Range(1,4);
+        keyStart = Random.Range(0,4);
         Debug.Log("keyStart = " + keyStart);
 
         keyArray[keyStart].SetActive(true);
