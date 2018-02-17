@@ -9,16 +9,22 @@ public class Interactions : MonoBehaviour
 
     private Door doorScript;
 
+    private bool clickInUse;
+
     // Use this for initialization
     void Start()
     {
         playerHasKey = false;
+
+        clickInUse = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         Shortcuts();
+
+        
     }
 
     void Shortcuts()
@@ -47,23 +53,31 @@ public class Interactions : MonoBehaviour
             SceneManager.LoadScene("Game");
         }
 
-        if (other.gameObject.CompareTag("Door") /*&& Input.GetMouseButtonDown(0)*/)
+        
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Door"))
         {
-            Debug.Log("Door triggered by Player.");
+            //Debug.Log("Player inside Door's Trigger.");
 
-            doorScript = other.gameObject.GetComponent<Door>();
-
-
-            if (doorScript.doorsClosed.activeSelf == true)
+            if (Input.GetKeyDown(KeyCode.Mouse0) && clickInUse == false)
             {
-                doorScript.doorsClosed.SetActive(false);
-                doorScript.doorsOpened.SetActive(true);
+                Debug.Log("Player clicked!");
+
+                clickInUse = true;
+
+                doorScript = other.gameObject.GetComponent<Door>();
+
+                doorScript.isDoorOpen = !doorScript.isDoorOpen;
+
+                Debug.Log("isDoorOpen = " + doorScript.isDoorOpen);
             }
 
-            if (doorScript.doorsClosed.activeSelf == false)
+            else
             {
-                doorScript.doorsClosed.SetActive(true);
-                doorScript.doorsOpened.SetActive(false);
+                clickInUse = false;
             }
         }
     }

@@ -7,6 +7,8 @@ public class Door : MonoBehaviour
     public GameObject doorsClosed;
     public GameObject doorsOpened;
 
+    public bool isDoorOpen;
+
     private int randomOpenClose;
 
     // Use this for initialization
@@ -18,7 +20,7 @@ public class Door : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        DoorOpenOrClosed();
     }
 
     void RandomDoorStart()
@@ -29,11 +31,24 @@ public class Door : MonoBehaviour
 
         if (randomOpenClose == 1)
         {
+            isDoorOpen = false;
+        }
+
+        if (randomOpenClose == 2)
+        {
+            isDoorOpen = true;
+        }
+    }
+
+    void DoorOpenOrClosed()
+    {
+        if (isDoorOpen == false)
+        {
             doorsClosed.SetActive(true);
             doorsOpened.SetActive(false);
         }
 
-        if (randomOpenClose == 2)
+        if (isDoorOpen == true)
         {
             doorsClosed.SetActive(false);
             doorsOpened.SetActive(true);
