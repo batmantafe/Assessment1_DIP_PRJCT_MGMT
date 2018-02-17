@@ -52,7 +52,7 @@ public class ShiningLight : MonoBehaviour
          * Light will turn Black and it will deactivate
          * the light Component.
         */
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Darkness"))
         {
             colourRend.material.color = Color.black;
             shiningLight.enabled = false;
@@ -61,7 +61,7 @@ public class ShiningLight : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Darkness"))
         {
             timer = timerSet;
         }
