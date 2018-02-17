@@ -57,19 +57,13 @@ public class Interactions : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Door"))
         {
-            //Debug.Log("Player inside Door's Trigger.");
-
             if (Input.GetKeyDown(KeyCode.Mouse0) && clickInUse == false)
             {
-                //Debug.Log("Player clicked!");
-
                 clickInUse = true;
 
                 doorScript = other.gameObject.GetComponent<Door>();
 
                 doorScript.isDoorOpen = !doorScript.isDoorOpen;
-
-                //Debug.Log("isDoorOpen = " + doorScript.isDoorOpen);
             }
 
             else

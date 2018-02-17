@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class ExitDoor : MonoBehaviour
 {
-    public GameObject redSign;
+    public GameObject greenSign;
 
     // Use this for initialization
     void Start()
@@ -22,7 +22,7 @@ public class ExitDoor : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player") &&
-            redSign.activeSelf == true &&
+            greenSign.activeSelf == true &&
             other.gameObject.GetComponent<Interactions>().playerHasKey == true)
         {
             SceneManager.LoadScene("Game");
