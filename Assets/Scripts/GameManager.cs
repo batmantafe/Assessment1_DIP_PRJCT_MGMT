@@ -5,18 +5,19 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public GameObject[] enemyArray;
-    public GameObject[] exitDoorArray;
+    public GameObject[] exitDoorRedArray;
+    public GameObject[] exitDoorBlackArray;
     public GameObject[] keyArray;
 
     private int enemyStart;
-    private int exitDoorStart;
+    private int exitDoorRedStart;
     private int keyStart;
 
     // Use this for initialization
     void Start()
     {
         EnemyStartFunction();
-        ExitDoorStartFunction();
+        ExitDoorRedStartFunction();
         KeyStartFunction();
     }
 
@@ -26,6 +27,7 @@ public class GameManager : MonoBehaviour
 
     }
 
+    // This function sets the random Enemy starting position.
     void EnemyStartFunction()
     {
         enemyStart = Random.Range(1,4);
@@ -33,13 +35,16 @@ public class GameManager : MonoBehaviour
         enemyArray[enemyStart].SetActive(true);
     }
 
-    void ExitDoorStartFunction()
+    // This function sets the random Exit Door.
+    void ExitDoorRedStartFunction()
     {
-        exitDoorStart = Random.Range(1,4);
+        exitDoorRedStart = Random.Range(1,4);
 
-        exitDoorArray[exitDoorStart].SetActive(true);
+        exitDoorRedArray[exitDoorRedStart].SetActive(true);
+        exitDoorBlackArray[exitDoorRedStart].SetActive(false);
     }
 
+    // This functions set the random Key.
     void KeyStartFunction()
     {
         keyStart = Random.Range(1,4);

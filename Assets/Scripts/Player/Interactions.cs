@@ -5,11 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class Interactions : MonoBehaviour
 {
+    public bool playerhasKey;
 
     // Use this for initialization
     void Start()
     {
-
+        playerhasKey = false;
     }
 
     // Update is called once per frame
@@ -36,6 +37,12 @@ public class Interactions : MonoBehaviour
         if (other.gameObject.CompareTag("Key"))
         {
             other.gameObject.SetActive(false);
+            playerhasKey = true;
+        }
+
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            SceneManager.LoadScene("Game");
         }
     }
 }
