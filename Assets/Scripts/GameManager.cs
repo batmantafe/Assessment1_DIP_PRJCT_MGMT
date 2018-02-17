@@ -6,8 +6,10 @@ public class GameManager : MonoBehaviour
 {
     public GameObject[] enemyArray;
     public GameObject[] exitDoorRedArray;
+    public GameObject[] exitDoorGreenArray;
     public GameObject[] exitDoorBlackArray;
     public GameObject[] keyArray;
+    public GameObject player;
 
     private int enemyStart;
     private int exitDoorRedStart;
@@ -18,13 +20,13 @@ public class GameManager : MonoBehaviour
     {
         EnemyStartFunction();
         ExitDoorRedStartFunction();
-        //KeyStartFunction();
+        KeyStartFunction();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        ExitDoorGreenFunction();
     }
 
     // This function sets the random Enemy starting position.
@@ -53,5 +55,14 @@ public class GameManager : MonoBehaviour
         Debug.Log("keyStart = " + keyStart);
 
         keyArray[keyStart].SetActive(true);
+    }
+
+    void ExitDoorGreenFunction()
+    {
+        if (player.gameObject.GetComponent<Interactions>().playerHasKey == true)
+        {
+            exitDoorRedArray[exitDoorRedStart].SetActive(false);
+            exitDoorGreenArray[exitDoorRedStart].SetActive(true);
+        }
     }
 }

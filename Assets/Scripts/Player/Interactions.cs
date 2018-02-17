@@ -24,7 +24,6 @@ public class Interactions : MonoBehaviour
     {
         Shortcuts();
 
-        
     }
 
     void Shortcuts()
@@ -52,8 +51,6 @@ public class Interactions : MonoBehaviour
         {
             SceneManager.LoadScene("Game");
         }
-
-        
     }
 
     void OnTriggerStay(Collider other)
