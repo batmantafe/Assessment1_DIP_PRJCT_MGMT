@@ -30,7 +30,8 @@ public class Interactions : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Application.Quit();
+            //Application.Quit();
+            SceneManager.LoadScene("Main");
         }
 
         if (Input.GetKeyDown(KeyCode.F1))
@@ -49,7 +50,7 @@ public class Interactions : MonoBehaviour
 
         if (other.gameObject.CompareTag("Enemy"))
         {
-            SceneManager.LoadScene("Game");
+            SceneManager.LoadScene("Lose");
         }
     }
 

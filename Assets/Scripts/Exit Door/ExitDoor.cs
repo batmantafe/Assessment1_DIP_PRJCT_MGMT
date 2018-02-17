@@ -25,7 +25,7 @@ public class ExitDoor : MonoBehaviour
             greenSign.activeSelf == true &&
             other.gameObject.GetComponent<Interactions>().playerHasKey == true)
         {
-            SceneManager.LoadScene("Game");
+            SceneManager.LoadScene("Win");
         }
     }
 }
