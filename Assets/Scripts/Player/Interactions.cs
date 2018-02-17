@@ -64,7 +64,7 @@ public class Interactions : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Mouse0) && clickInUse == false)
             {
-                Debug.Log("Player clicked!");
+                //Debug.Log("Player clicked!");
 
                 clickInUse = true;
 
@@ -72,7 +72,7 @@ public class Interactions : MonoBehaviour
 
                 doorScript.isDoorOpen = !doorScript.isDoorOpen;
 
-                Debug.Log("isDoorOpen = " + doorScript.isDoorOpen);
+                //Debug.Log("isDoorOpen = " + doorScript.isDoorOpen);
             }
 
             else
