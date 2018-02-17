@@ -23,7 +23,7 @@ public class ExitDoor : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") &&
             redSign.activeSelf == true &&
-            other.gameObject.GetComponent<Interactions>().playerhasKey == true)
+            other.gameObject.GetComponent<Interactions>().playerHasKey == true)
         {
             SceneManager.LoadScene("Game");
         }
