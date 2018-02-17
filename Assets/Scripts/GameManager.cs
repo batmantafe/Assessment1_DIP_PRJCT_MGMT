@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     {
         EnemyStartFunction();
         ExitDoorRedStartFunction();
-        KeyStartFunction();
+        //KeyStartFunction();
     }
 
     // Update is called once per frame
@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     void EnemyStartFunction()
     {
         enemyStart = Random.Range(1,4);
+        Debug.Log("enemyStart = " + enemyStart);
 
         enemyArray[enemyStart].SetActive(true);
     }
@@ -39,6 +40,7 @@ public class GameManager : MonoBehaviour
     void ExitDoorRedStartFunction()
     {
         exitDoorRedStart = Random.Range(1,4);
+        Debug.Log("exitDoorRedStart = " + exitDoorRedStart);
 
         exitDoorRedArray[exitDoorRedStart].SetActive(true);
         exitDoorBlackArray[exitDoorRedStart].SetActive(false);
@@ -48,6 +50,7 @@ public class GameManager : MonoBehaviour
     void KeyStartFunction()
     {
         keyStart = Random.Range(1,4);
+        Debug.Log("keyStart = " + keyStart);
 
         keyArray[keyStart].SetActive(true);
     }
