@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Interactions : MonoBehaviour
 {
     public bool playerHasKey;
+    public bool playerAtDoor;
 
     private Door doorScript;
 
@@ -15,6 +16,7 @@ public class Interactions : MonoBehaviour
     void Start()
     {
         playerHasKey = false;
+        playerAtDoor = false;
 
         clickInUse = false;
     }
@@ -58,6 +60,8 @@ public class Interactions : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Door"))
         {
+            playerAtDoor = true;
+
             if (Input.GetKeyDown(KeyCode.Mouse0) && clickInUse == false)
             {
                 clickInUse = true;
@@ -71,6 +75,14 @@ public class Interactions : MonoBehaviour
             {
                 clickInUse = false;
             }
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Door"))
+        {
+            playerAtDoor = false;
         }
     }
 }

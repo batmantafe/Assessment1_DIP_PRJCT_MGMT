@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,11 +10,15 @@ public class GameManager : MonoBehaviour
     public GameObject[] exitDoorGreenArray;
     public GameObject[] exitDoorBlackArray;
     public GameObject[] keyArray;
+    public string[] keyGridArray;
     public GameObject player;
 
     private int enemyStart;
     private int exitDoorRedStart;
     private int keyStart;
+
+    public Text objectiveText;
+    public Text doorText;
 
     // Use this for initialization
     void Start()
@@ -27,6 +32,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         ExitDoorGreenFunction();
+        MessageFunction();
     }
 
     // This function sets the random Enemy starting position.
@@ -63,6 +69,29 @@ public class GameManager : MonoBehaviour
         {
             exitDoorRedArray[exitDoorRedStart].SetActive(false);
             exitDoorGreenArray[exitDoorRedStart].SetActive(true);
+        }
+    }
+
+    void MessageFunction()
+    {
+        if (player.gameObject.GetComponent<Interactions>().playerHasKey == false)
+        {
+            objectiveText.text = "The Key is near Ward " + keyGridArray[keyStart];
+        }
+
+        if (player.gameObject.GetComponent<Interactions>().playerHasKey == true)
+        {
+            objectiveText.text = "You've got the Key! Find the Exit!";
+        }
+
+        if (player.gameObject.GetComponent<Interactions>().playerAtDoor == true)
+        {
+            doorText.text = "Left-Click to open or close this Door.";
+        }
+
+        if (player.gameObject.GetComponent<Interactions>().playerAtDoor == false)
+        {
+            doorText.text = "";
         }
     }
 }
