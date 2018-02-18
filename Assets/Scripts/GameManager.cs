@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] exitDoorBlackArray;
     public GameObject[] keyArray;
     public string[] keyGridArray;
+    public string[] exitGridArray;
     public GameObject player;
 
     private int enemyStart;
@@ -76,12 +77,12 @@ public class GameManager : MonoBehaviour
     {
         if (player.gameObject.GetComponent<Interactions>().playerHasKey == false)
         {
-            objectiveText.text = "The Key is near Ward " + keyGridArray[keyStart] + ".";
+            objectiveText.text = "The Key is near Ward " + keyGridArray[keyStart];
         }
 
         if (player.gameObject.GetComponent<Interactions>().playerHasKey == true)
         {
-            objectiveText.text = "You've got the Key! Find the Exit!";
+            objectiveText.text = "You've got the Key! The Exit is near Ward " + exitGridArray[exitDoorRedStart];
         }
 
         if (player.gameObject.GetComponent<Interactions>().playerAtDoor == true)
