@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
     {
         if (player.gameObject.GetComponent<Interactions>().playerHasKey == false)
         {
-            objectiveText.text = "The Key is near Ward " + keyGridArray[keyStart];
+            objectiveText.text = "The Key is near Ward " + keyGridArray[keyStart] + ".";
         }
 
         if (player.gameObject.GetComponent<Interactions>().playerHasKey == true)
