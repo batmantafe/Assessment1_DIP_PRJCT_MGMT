@@ -8,6 +8,9 @@ public class Interactions : MonoBehaviour
     public bool playerHasKey;
     public bool playerAtDoor;
 
+    public bool playerAtBlackExit;
+    public bool playerAtRedExit;
+
     private Door doorScript;
 
     private bool clickInUse;
@@ -19,6 +22,9 @@ public class Interactions : MonoBehaviour
         playerAtDoor = false;
 
         clickInUse = false;
+
+        playerAtBlackExit = false;
+        playerAtRedExit = false;
     }
 
     // Update is called once per frame
@@ -76,6 +82,22 @@ public class Interactions : MonoBehaviour
                 clickInUse = false;
             }
         }
+
+        if (other.gameObject.CompareTag("Exit Door"))
+        {
+            if (other.gameObject.GetComponent<ExitDoor>().redSign.activeSelf == false)
+            {
+                if (other.gameObject.GetComponent<ExitDoor>().greenSign.activeSelf == false)
+                {
+                    playerAtBlackExit = true;
+                }
+            }
+
+            if (other.gameObject.GetComponent<ExitDoor>().redSign.activeSelf == true)
+            {
+                    playerAtRedExit = true;
+            }
+        }
     }
 
     void OnTriggerExit(Collider other)
@@ -83,6 +105,12 @@ public class Interactions : MonoBehaviour
         if (other.gameObject.CompareTag("Door"))
         {
             playerAtDoor = false;
+        }
+
+        if (other.gameObject.CompareTag("Exit Door"))
+        {
+            playerAtBlackExit = false;
+            playerAtRedExit = false;
         }
     }
 }

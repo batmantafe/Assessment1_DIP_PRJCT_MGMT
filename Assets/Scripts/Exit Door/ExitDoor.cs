@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class ExitDoor : MonoBehaviour
 {
     public GameObject greenSign;
+    public GameObject redSign;
 
     // Use this for initialization
     void Start()

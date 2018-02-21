@@ -79,6 +79,7 @@ public class GameManager : MonoBehaviour
 
     void MessageFunction()
     {
+        // Messages for Keys
         if (player.gameObject.GetComponent<Interactions>().playerHasKey == false)
         {
             objectiveText.text = "The Key is near Ward " + keyGridArray[keyStart];
@@ -89,6 +90,7 @@ public class GameManager : MonoBehaviour
             objectiveText.text = "You've got the Key. The Exit is near Ward " + exitGridArray[exitDoorRedStart];
         }
 
+        // Messages for normal open/close Doors
         if (player.gameObject.GetComponent<Interactions>().playerAtDoor == true)
         {
             doorText.text = "Left-Click to open or close this Door.";
@@ -97,11 +99,24 @@ public class GameManager : MonoBehaviour
         if (player.gameObject.GetComponent<Interactions>().playerAtDoor == false)
         {
             doorText.text = "";
+
         }
 
+        // Messages about the Enemy
         if (enemyDetect[enemyStart].GetComponent<AIDetect>().enemyHuntingPlayer == true)
         {
             enemyText.text = "It's coming for you.";
+        }
+
+        // Messages for the Exit Doors
+        if (player.gameObject.GetComponent<Interactions>().playerAtBlackExit == true)
+        {
+            doorText.text = "This Exit is broken. Find another Exit.";
+        }
+
+        if (player.gameObject.GetComponent<Interactions>().playerAtRedExit == true)
+        {
+            doorText.text = "This Exit is locked. Find the Key and come back.";
         }
     }
 }
