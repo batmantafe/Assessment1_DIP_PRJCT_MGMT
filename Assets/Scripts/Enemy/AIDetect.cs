@@ -6,9 +6,6 @@ using UnityEngine.UI;
 
 public class AIDetect : MonoBehaviour
 {
-    public GameObject enemy;
-    public Transform player;
-
     public bool enemyHuntingPlayer;
 
     // Use this for initialization
@@ -26,11 +23,7 @@ public class AIDetect : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
-        {
-            enemy.GetComponent<NavMeshAgent>().SetDestination(player.position);
-
-            Debug.Log("Enemy is hunting Player!");
-
+        { 
             enemyHuntingPlayer = true;
         }
     }

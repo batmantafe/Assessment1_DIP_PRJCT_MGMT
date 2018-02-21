@@ -7,13 +7,13 @@ using UnityEngine.AI;
 
 public class AIAgent : MonoBehaviour
 {
-    public Transform target;
-
-    public Transform[] randomNav;
     public Transform player;
 
+    public Transform[] randomNav;
     private int randomNavInt;
     private Transform randomNavTrans;
+
+    public GameObject enemyDetect;
 
     private NavMeshAgent nav;
 
@@ -42,7 +42,7 @@ public class AIAgent : MonoBehaviour
         }
         */
 
-        CheckRandom();
+        CheckTarget();
     }
 
     void RandomNav()
@@ -58,12 +58,19 @@ public class AIAgent : MonoBehaviour
         Debug.Log("Enemy is wandering.");
     }
 
-    void CheckRandom()
+    void CheckTarget()
     {
+        Debug.Log(nav.destination);
+
         if (transform.position == randomNavTrans.position &&
-            nav.destination != player.position)
+            enemyDetect.GetComponent<AIDetect>().enemyHuntingPlayer == false)
         {
             RandomNav();
+        }
+
+        if (enemyDetect.GetComponent<AIDetect>().enemyHuntingPlayer == true)
+        {
+            nav.SetDestination(player.position);
         }
     }
 }
