@@ -27,7 +27,7 @@ public class Door : MonoBehaviour
     {
         randomOpenClose = Random.Range(1,3);
 
-        Debug.Log("randomOpenClose = " + randomOpenClose);
+        //Debug.Log("randomOpenClose = " + randomOpenClose);
 
         if (randomOpenClose == 1)
         {

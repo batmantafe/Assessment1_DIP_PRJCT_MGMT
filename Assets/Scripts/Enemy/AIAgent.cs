@@ -3,40 +3,68 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace TowerDefense
+[RequireComponent(typeof(NavMeshAgent))]
+
+public class AIAgent : MonoBehaviour
 {
-    
-    [RequireComponent(typeof(NavMeshAgent))]
-    public class AIAgent : MonoBehaviour
+    public Transform target;
+
+    public Transform[] randomNav;
+    public Transform player;
+
+    private int randomNavInt;
+    private Transform randomNavTrans;
+
+    private NavMeshAgent nav;
+
+    // Use this for initialization
+
+    void Awake()
     {
-        public Transform target;
+        nav = GetComponent<NavMeshAgent>();
+    }
 
-        private NavMeshAgent nav;
 
-        // Use this for initialization
+    void Start()
+    {
+        RandomNav();
+    }
 
-        void Awake()
+    // Update is called once per frame
+    void Update()
+    {
+        /*
+        // if target is != null
+        if (target != null)
         {
-            nav = GetComponent<NavMeshAgent>();
+            // set destination to target's position
+            nav.SetDestination(target.position);
         }
+        */
 
+        CheckRandom();
+    }
 
-        void Start()
+    void RandomNav()
+    {
+        randomNavInt = Random.Range(0,4);
+
+        randomNavTrans = randomNav[randomNavInt];
+
+        nav.SetDestination(randomNavTrans.position);
+
+        Debug.Log("randomNavInt = " + randomNavInt);
+
+        Debug.Log("Enemy is wandering.");
+    }
+
+    void CheckRandom()
+    {
+        if (transform.position == randomNavTrans.position &&
+            nav.destination != player.position)
         {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-            // if target is != null
-            if (target != null)
-            {
-                // set destination to target's position
-                nav.SetDestination(target.position);
-            }
-
-
+            RandomNav();
         }
     }
 }
+

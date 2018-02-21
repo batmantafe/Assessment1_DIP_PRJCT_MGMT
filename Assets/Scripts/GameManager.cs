@@ -13,11 +13,13 @@ public class GameManager : MonoBehaviour
     public string[] keyGridArray;
     public string[] exitGridArray;
     public GameObject player;
+    public GameObject[] enemyDetect;
 
     private int enemyStart;
     private int exitDoorRedStart;
     private int keyStart;
 
+    public Text enemyText;
     public Text objectiveText;
     public Text doorText;
 
@@ -27,6 +29,8 @@ public class GameManager : MonoBehaviour
         EnemyStartFunction();
         ExitDoorRedStartFunction();
         KeyStartFunction();
+
+        enemyText.text = "Something is in here with you.";
     }
 
     // Update is called once per frame
@@ -82,7 +86,7 @@ public class GameManager : MonoBehaviour
 
         if (player.gameObject.GetComponent<Interactions>().playerHasKey == true)
         {
-            objectiveText.text = "You've got the Key! The Exit is near Ward " + exitGridArray[exitDoorRedStart];
+            objectiveText.text = "You've got the Key. The Exit is near Ward " + exitGridArray[exitDoorRedStart];
         }
 
         if (player.gameObject.GetComponent<Interactions>().playerAtDoor == true)
@@ -93,6 +97,11 @@ public class GameManager : MonoBehaviour
         if (player.gameObject.GetComponent<Interactions>().playerAtDoor == false)
         {
             doorText.text = "";
+        }
+
+        if (enemyDetect[enemyStart].GetComponent<AIDetect>().enemyHuntingPlayer == true)
+        {
+            enemyText.text = "It's coming for you.";
         }
     }
 }
