@@ -11,10 +11,12 @@ public class ShiningLight : MonoBehaviour
 
     private float timer;
     private float timerSet = 30f;
+    public bool blackOut;
 
     private float blinkTimer;
     private float blinkIntensity;
-    private bool blinkOn;
+    public bool detectBlink;
+    public bool blinkOn;
 
     // timer = timer - (1f * Time.deltaTime);
 
@@ -27,12 +29,17 @@ public class ShiningLight : MonoBehaviour
         timer = 0f;
 
         blinkOn = false;
+        detectBlink = false;
+
+        blackOut = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         TimerFunction();
+
+        BlinkFunction();
     }
 
     void TimerFunction()
@@ -46,6 +53,8 @@ public class ShiningLight : MonoBehaviour
         {
             timer = 0f;
 
+            blackOut = false;
+
             colourRend.material.color = Color.white;
             shiningLight.enabled = true;
         }
@@ -58,35 +67,47 @@ public class ShiningLight : MonoBehaviour
          * Light will turn Black and it will deactivate
          * the light Component.
         */
-        if (other.gameObject.CompareTag("Darkness"))
+        if (other.gameObject.CompareTag("Darkness") & blackOut == false)
         {
+            blackOut = true;
+
             colourRend.material.color = Color.black;
             shiningLight.enabled = false;
+        }
+
+        if (other.gameObject.CompareTag("Detect") && blackOut == false)
+        {
+            detectBlink = true;
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Darkness"))
+        if (other.gameObject.CompareTag("Darkness") && blackOut == true)
         {
             timer = timerSet;
         }
+
+        if (other.gameObject.CompareTag("Detect") && blackOut == false)
+        {
+            detectBlink = false;
+        }
     }
 
-    void OnTriggerStay(Collider other)
+    /*void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Detect") && blinkOn == false)
         {
             StartCoroutine(Blink());
         }
-    }
+    }*/
 
     IEnumerator Blink()
     {
         blinkOn = true;
 
-        blinkTimer = Random.Range(0.5f, 1f);
-        blinkIntensity = Random.Range(0.5f, 3f);
+        blinkTimer = Random.Range(1f, 2f);
+        blinkIntensity = Random.Range(0.5f, 4f);
 
         shiningLight.intensity = blinkIntensity;
 
@@ -95,5 +116,13 @@ public class ShiningLight : MonoBehaviour
         shiningLight.intensity = 2.0f;
 
         blinkOn = false;
+    }
+
+    void BlinkFunction()
+    {
+        if (detectBlink == true && blinkOn == false)
+        {
+            StartCoroutine(Blink());
+        }
     }
 }
