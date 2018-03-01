@@ -12,6 +12,10 @@ public class ShiningLight : MonoBehaviour
     private float timer;
     private float timerSet = 30f;
 
+    private float blinkTimer;
+    private float blinkIntensity;
+    private bool blinkOn;
+
     // timer = timer - (1f * Time.deltaTime);
 
     // Use this for initialization
@@ -21,6 +25,8 @@ public class ShiningLight : MonoBehaviour
         colourRend = GetComponent<Renderer>();
 
         timer = 0f;
+
+        blinkOn = false;
     }
 
     // Update is called once per frame
@@ -65,5 +71,29 @@ public class ShiningLight : MonoBehaviour
         {
             timer = timerSet;
         }
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Detect") && blinkOn == false)
+        {
+            StartCoroutine(Blink());
+        }
+    }
+
+    IEnumerator Blink()
+    {
+        blinkOn = true;
+
+        blinkTimer = Random.Range(0.5f, 1f);
+        blinkIntensity = Random.Range(0.5f, 3f);
+
+        shiningLight.intensity = blinkIntensity;
+
+        yield return new WaitForSeconds(blinkTimer);
+
+        shiningLight.intensity = 2.0f;
+
+        blinkOn = false;
     }
 }
