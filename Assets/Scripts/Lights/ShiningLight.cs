@@ -39,7 +39,7 @@ public class ShiningLight : MonoBehaviour
     {
         TimerFunction();
 
-        BlinkFunction();
+        //BlinkFunction();
     }
 
     void TimerFunction()
@@ -56,7 +56,7 @@ public class ShiningLight : MonoBehaviour
             blackOut = false;
 
             colourRend.material.color = Color.white;
-            shiningLight.enabled = true;
+            shiningLight.intensity = 2.0f;
         }
     }
 
@@ -72,7 +72,7 @@ public class ShiningLight : MonoBehaviour
             blackOut = true;
 
             colourRend.material.color = Color.black;
-            shiningLight.enabled = false;
+            shiningLight.intensity = 0.0f;
         }
 
         if (other.gameObject.CompareTag("Detect") && blackOut == false)
