@@ -105,7 +105,8 @@ public class GameManager : MonoBehaviour
         // Messages about the Enemy
         if (enemyDetect[enemyStart].GetComponent<AIDetect>().enemyHuntingPlayer == true)
         {
-            enemyText.text = "It's coming for you.";
+            enemyText.color = Color.red;
+            enemyText.text = "IT'S COMING FOR YOU";
         }
 
         // Messages for the Exit Doors
