@@ -11,12 +11,13 @@ public class ShiningLight : MonoBehaviour
 
     private float timer;
     private float timerSet = 30f;
-    public bool blackOut;
 
     private float blinkTimer;
     private float blinkIntensity;
     public bool detectBlink;
     public bool blinkOn;
+
+    public bool blackOutBool;
 
     // timer = timer - (1f * Time.deltaTime);
 
@@ -30,8 +31,11 @@ public class ShiningLight : MonoBehaviour
 
         blinkOn = false;
         detectBlink = false;
+    }
 
-        blackOut = false;
+    void FixedUpdate()
+    {
+        BlackoutFunction();
     }
 
     // Update is called once per frame
@@ -40,6 +44,11 @@ public class ShiningLight : MonoBehaviour
         TimerFunction();
 
         //BlinkFunction();
+    }
+
+    void LateUpdate()
+    {
+        BlinkFunction();
     }
 
     void TimerFunction()
@@ -53,10 +62,9 @@ public class ShiningLight : MonoBehaviour
         {
             timer = 0f;
 
-            blackOut = false;
-
             colourRend.material.color = Color.white;
-            shiningLight.intensity = 2.0f;
+            shiningLight.enabled = true;
+            //shiningLight.intensity = 2.0f;
         }
     }
 
@@ -67,15 +75,13 @@ public class ShiningLight : MonoBehaviour
          * Light will turn Black and it will deactivate
          * the light Component.
         */
-        if (other.gameObject.CompareTag("Darkness") & blackOut == false)
+        if (other.gameObject.CompareTag("Darkness"))
         {
-            blackOut = true;
-
             colourRend.material.color = Color.black;
-            shiningLight.intensity = 0.0f;
+            shiningLight.enabled = false;
         }
 
-        if (other.gameObject.CompareTag("Detect") && blackOut == false)
+        if (other.gameObject.CompareTag("Detect"))
         {
             detectBlink = true;
         }
@@ -83,12 +89,12 @@ public class ShiningLight : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Darkness") && blackOut == true)
+        if (other.gameObject.CompareTag("Darkness"))
         {
             timer = timerSet;
         }
 
-        if (other.gameObject.CompareTag("Detect") && blackOut == false)
+        if (other.gameObject.CompareTag("Detect"))
         {
             detectBlink = false;
         }
@@ -120,9 +126,22 @@ public class ShiningLight : MonoBehaviour
 
     void BlinkFunction()
     {
-        if (detectBlink == true && blinkOn == false)
+        if (detectBlink == true && blinkOn == false && blackOutBool == false)
         {
             StartCoroutine(Blink());
+        }
+    }
+
+    void BlackoutFunction()
+    {
+        if (shiningLight.enabled == false) //(shiningLight.intensity == 0f)
+        {
+            blackOutBool = true;
+        }
+
+        if (shiningLight.enabled == true)
+        {
+            blackOutBool = false;
         }
     }
 }
