@@ -45,6 +45,7 @@ public class AIAgent : MonoBehaviour
         CheckTarget();
     }
 
+    // This function randomly chooses a NavTarget from the randomNav array.
     void RandomNav()
     {
         randomNavInt = Random.Range(0,4);
@@ -62,12 +63,15 @@ public class AIAgent : MonoBehaviour
     {
         Debug.Log(nav.destination);
 
+        // If Player has reached the random NavTarget and Bool from AIDetect script is False, then
+        // choose another random NavTarget to wander/patrol to.
         if (transform.position == randomNavTrans.position &&
             enemyDetect.GetComponent<AIDetect>().enemyHuntingPlayer == false)
         {
             RandomNav();
         }
 
+        // If Bool from AIDetect script is True, then replace random NavTarget with Player's NavTarget.
         if (enemyDetect.GetComponent<AIDetect>().enemyHuntingPlayer == true)
         {
             nav.SetDestination(player.position);

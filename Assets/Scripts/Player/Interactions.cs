@@ -50,12 +50,15 @@ public class Interactions : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        // If Player enters Key's trigger, then deactivate Key and set PlayerHadKey Bool to
+        // True (used in ExitDoor script).
         if (other.gameObject.CompareTag("Key"))
         {
             other.gameObject.SetActive(false);
             playerHasKey = true;
         }
 
+        // If Player enters Enemy's trigger then Lose!
         if (other.gameObject.CompareTag("Enemy"))
         {
             SceneManager.LoadScene("Lose");
@@ -64,6 +67,9 @@ public class Interactions : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
+        // Used to toggle open/close Door gameobjects when Player left-clicks and is in Door's trigger.
+        // PlayerAtDoor Bool used in GameManager script to display appropriate Text message to Player, to
+        // let them know how to open/close Door.
         if (other.gameObject.CompareTag("Door"))
         {
             playerAtDoor = true;
@@ -83,6 +89,9 @@ public class Interactions : MonoBehaviour
             }
         }
 
+        // Used in GameManager script to activate appropriate Text message to Player when Player is at
+        // an Exit Door that is not working (has a Black "Exit" Sign) or is working but the Player doesn't have
+        // the Key yet (has a Red "Exit" Sign)
         if (other.gameObject.CompareTag("Exit Door"))
         {
             if (other.gameObject.GetComponent<ExitDoor>().redSign.activeSelf == false)
@@ -100,6 +109,7 @@ public class Interactions : MonoBehaviour
         }
     }
 
+    // Bools used in GameManager script to display appropriate Text message when at Doors and Exit Doors.
     void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Door"))

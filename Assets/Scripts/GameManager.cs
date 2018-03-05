@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
         exitDoorBlackArray[exitDoorRedStart].SetActive(false);
     }
 
-    // This functions set the random Key.
+    // This function set the random Key.
     void KeyStartFunction()
     {
         keyStart = Random.Range(0,4);
@@ -68,6 +68,7 @@ public class GameManager : MonoBehaviour
         keyArray[keyStart].SetActive(true);
     }
 
+    // When Player has Key, this function activates the Exit Door to Win the game.
     void ExitDoorGreenFunction()
     {
         if (player.gameObject.GetComponent<Interactions>().playerHasKey == true)
@@ -106,7 +107,7 @@ public class GameManager : MonoBehaviour
         if (enemyDetect[enemyStart].GetComponent<AIDetect>().enemyHuntingPlayer == true)
         {
             enemyText.color = Color.red;
-            enemyText.text = "IT'S COMING FOR YOU";
+            enemyText.text = "IT KNOWS WHERE YOU ARE";
         }
 
         // Messages for the Exit Doors

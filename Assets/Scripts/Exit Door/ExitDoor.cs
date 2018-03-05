@@ -21,6 +21,8 @@ public class ExitDoor : MonoBehaviour
 
     }
 
+    // If Player enters Trigger AND the Green Sign on Door is Active (correct Door) AND
+    // the Player has the Key, then Win!
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player") &&

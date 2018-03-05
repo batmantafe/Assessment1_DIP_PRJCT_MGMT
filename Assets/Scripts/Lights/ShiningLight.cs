@@ -51,6 +51,7 @@ public class ShiningLight : MonoBehaviour
         BlinkFunction();
     }
 
+    // Used to count down to reactivating Light's material and light component in OnTriggerExit.
     void TimerFunction()
     {
         if (timer > 0f)
@@ -70,17 +71,15 @@ public class ShiningLight : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        /*
-         * When the Light is Triggered by an Enemy, the
-         * Light will turn Black and it will deactivate
-         * the light Component.
-        */
+        // If Enemy's Darkness trigger enters a Light trigger, then Light's Material turns Black AND
+        // Light component turned Off.
         if (other.gameObject.CompareTag("Darkness"))
         {
             colourRend.material.color = Color.black;
             shiningLight.enabled = false;
         }
 
+        // If Enemy's Detect trigger enters Light trigger, then DetectBlink Bool is True.
         if (other.gameObject.CompareTag("Detect"))
         {
             detectBlink = true;
@@ -89,11 +88,14 @@ public class ShiningLight : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
+        // If Enemy's Darkness trigger has left the Light's trigger, then start countdown Timer function
+        // to reactivate Light.
         if (other.gameObject.CompareTag("Darkness"))
         {
             timer = timerSet;
         }
 
+        // If Enemy's Detect trigger has left the Light's trigger, then DetectBlink bool is false.
         if (other.gameObject.CompareTag("Detect"))
         {
             detectBlink = false;
@@ -108,6 +110,8 @@ public class ShiningLight : MonoBehaviour
         }
     }*/
 
+    // Blink selects a random time and light intensity, then activates the light intensity for that time, then
+    // resets it back to normal intensity.
     IEnumerator Blink()
     {
         blinkOn = true;
@@ -124,6 +128,8 @@ public class ShiningLight : MonoBehaviour
         blinkOn = false;
     }
 
+    // If Enemy's Detect trigger is present, and Blink ienumerator isn't already working, and Light is still On,
+    // then run Blink ienumerator.
     void BlinkFunction()
     {
         if (detectBlink == true && blinkOn == false && blackOutBool == false)
@@ -132,6 +138,7 @@ public class ShiningLight : MonoBehaviour
         }
     }
 
+    // Chooses appropriate Bool (used in BlinkFunction function) if Light component is On or Off.
     void BlackoutFunction()
     {
         if (shiningLight.enabled == false) //(shiningLight.intensity == 0f)

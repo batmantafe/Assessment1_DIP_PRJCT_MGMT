@@ -17,12 +17,15 @@ public class AIDetect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // For Debugging purposes
         if (Input.GetKeyDown(KeyCode.F2))
         {
             enemyHuntingPlayer = true;
         }
     }
 
+    // If Player enters Enemy Trigger then Bool is True. This is used in AIAgent script to change
+    // AI from random NavTargets (wander/patrol), to Player NavTarget.
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))

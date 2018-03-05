@@ -17,6 +17,7 @@ public class Key : MonoBehaviour
         Rotate();
     }
 
+    // Key spins slowly to catch Player's attention
     void Rotate()
     {
         transform.Rotate(new Vector3(15, 30, 45) * Time.deltaTime);

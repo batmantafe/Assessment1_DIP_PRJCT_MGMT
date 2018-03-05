@@ -23,6 +23,7 @@ public class Door : MonoBehaviour
         DoorOpenOrClosed();
     }
 
+    // Randomises if the Door is Open or Closed at the Start of the game, and sets appropriate Bool result
     void RandomDoorStart()
     {
         randomOpenClose = Random.Range(1,3);
@@ -40,6 +41,7 @@ public class Door : MonoBehaviour
         }
     }
 
+    // Chooses Open Doors or Closed Doors gameobjects depending on Bool result from RandomDoorStart function
     void DoorOpenOrClosed()
     {
         if (isDoorOpen == false)
